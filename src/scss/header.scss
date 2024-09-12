@@ -1,0 +1,330 @@
+//====================================================================================================
+//* header
+.header {
+	background: #1A1A1A;	
+	color: #fff;
+	position: sticky;
+	top: 0;
+	z-index: 51;
+	@media (max-width:$mobile){
+		position: sticky;
+		&::before{
+			content:'';
+			position: absolute;
+			width: 100%;
+			height: rem(70);
+			background: #1A1A1A;
+			z-index: 2;
+		}
+	}
+/* 
+header__container 
+	using 
+	//*display: flex;
+	//* and align-items: center; 
+	//*justify-content: space-between; 
+	I scattered the two main elements ( logo and site navigation ) of the page around the edges of the container
+*/
+	
+	&__container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: rem(70);
+		border-bottom: rgba(255, 255, 255, 0.2) 1px solid;
+	}
+
+	&__logo {
+		z-index: 2;
+	}
+
+	//* Here I have added an animation for the menu using Splitting
+
+	&__item {
+		&._watcher-view{
+			--item-percent: calc(
+		var(--item-index) / var(--item-total)	
+		);
+		animation: slide-in 1.1s cubic-bezier(.2,.0,.2,1) both;
+		animation-delay: calc(.2s * var(--item-index));
+		}
+		
+	}
+	
+	&__link {
+		position: relative;
+		font-size: rem(16);
+		font-style: normal;
+		font-weight: 400;
+		line-height: math.div(22 ,16 );
+		letter-spacing: rem(0.32);
+		text-transform: uppercase;
+		//*Here I've added text underlining
+			@media (any-hover: hover){
+				&::before {
+					content: '';
+					position: absolute;
+					width: 100%;
+					height: rem(2);
+					border-radius: rem(2);
+					background-color: #c6dd43bd;
+					bottom: rem(-2);
+					left: 0;
+					transform-origin: right;
+					transform: scaleX(0);
+					transition: transform .2s ease-in-out;
+			}
+			&:hover{
+				&:hover::before {
+					transform-origin: left;
+					transform: scaleX(1);
+				}
+			}
+		}
+	}		
+}
+
+.menu {
+	display: flex;
+	align-items: center;
+
+	&__icon {
+		
+	}
+	//* Here I made the animation and functionality of the burger menu
+	&__body {
+		
+		@media (max-width:$mobile) {
+			position: fixed;
+			left: 0;
+			top: -100%;
+			width: 100%;
+			height: 100%;
+			background: #1A1A1A;
+			padding: rem(90) rem(20) rem(30) rem(15);
+			transition: all 0.5s ease 0s;
+			&::before{
+				content:'';
+				position: fixed;
+				top: 0;
+				left: -100%;
+				width: 100%;
+				height: rem(70);
+				background-color: #1A1A1A;
+				z-index: 1;
+			}
+			.menu-open &{
+				top: 0;
+				
+				&::before{
+					content:'';
+					top: 0;
+				}
+			}
+		}
+	}
+
+	&__list {
+		display: flex;
+		align-items: center;
+		gap: rem(28);
+		@media (max-width:$mobile){
+			flex-direction: column; 
+			padding-top: rem(80);
+			gap: rem(48);
+		}
+		
+	}
+}
+
+//====================================================================================================
+	
+//Burger
+
+.icon-menu {
+	display: none;
+	
+	@media (max-width: $mobile) {
+		display: block;
+		position: relative;
+		width: rem(19.5);
+		height: rem(8.5);
+		z-index: 5;
+		@media (any-hover: none) {
+			cursor: default;
+		}
+		span {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			&::before{
+				content:'';
+				position: absolute;
+				width: rem(40);
+				height: rem(40);
+				border: #414141 1px solid;
+				border-radius: 50%;
+				.menu-open & {
+					left: rem(-11);
+				}
+			}
+		}
+		&::before,
+		&::after {
+			content: "";
+			transition: all 0.3s ease 0s;
+			right: 0;
+			position: absolute;
+			width: 100%;
+			height: rem(2);
+			background-color: #ffffff;
+		}
+		&::before {
+			top: 0;
+		}
+		&::after {
+			bottom: 0;
+		}
+		.menu-open & {
+			span {
+				width: 0;
+			}
+			&::before {
+				top: calc(50% - rem(1));
+				transform: rotate(-45deg);
+			}
+			&::after {
+				bottom: calc(50% - rem(1));
+				transform: rotate(45deg);
+			}
+		}
+	}
+}
+  
+  @keyframes slide-in {
+	from {
+	  transform: scale(.8) translateY(1em);
+	  opacity: 0.05;
+	}
+  }
+
+
+
+
+/*
+<!-- our-past-project__content   -->
+					<div class="services__content">
+
+						<!-- our-past-project__card card-our-past-project   -->
+						<div class="services__card card-services">
+
+							<!-- card-our-past-project__info-item   -->
+							<div class="card-services__info-item">
+
+								<!-- card-our-past-project__title   -->
+								<div class="card-services__title">
+
+									<!-- card-our-past-project__name   -->
+									<div class="card-services__name">Olive Max</div>
+
+									<!-- card-our-past-project__link   -->
+									<a href="" class="card-services__link"><svg xmlns="http://www.w3.org/2000/svg"
+											width="30" height="31" viewBox="0 0 30 31" fill="none">
+											<path fill-rule="evenodd" clip-rule="evenodd"
+												d="M19.5858 7.5H4.41421V3.5H26.4142V25.5H22.4142V10.3284L5.82843 26.9142L3 24.0858L19.5858 7.5Z"
+												fill="#121212" />
+										</svg></a>
+								</div>
+
+								<!-- card-our-past-project__paragraph   -->
+								<p class="card-services__paragraph">
+									The platform allows incredible flexibility via creation, distribution, and
+									purchasing features for the brands to stand out and create their own identity in the
+									Metaverse.
+								</p>
+							</div>
+							<!-- card-our-past-project__info-item   -->
+							<div class="card-services__info-item">
+
+								<!-- card-our-past-project__title   -->
+								<div class="card-services__title">
+
+									<!-- card-our-past-project__name   -->
+									<div class="card-services__name">Olive Max</div>
+
+									<!-- card-our-past-project__link   -->
+									<a href="" class="card-services__link"><svg xmlns="http://www.w3.org/2000/svg"
+											width="30" height="31" viewBox="0 0 30 31" fill="none">
+											<path fill-rule="evenodd" clip-rule="evenodd"
+												d="M19.5858 7.5H4.41421V3.5H26.4142V25.5H22.4142V10.3284L5.82843 26.9142L3 24.0858L19.5858 7.5Z"
+												fill="#121212" />
+										</svg></a>
+								</div>
+
+								<!-- card-our-past-project__paragraph   -->
+								<p class="card-services__paragraph">
+									The platform allows incredible flexibility via creation, distribution, and
+									purchasing features for the brands to stand out and create their own identity in the
+									Metaverse.
+								</p>
+							</div>
+
+						</div>
+
+						<div class="services__card card-services">
+
+							<!-- card-our-past-project__info-item   -->
+							<div class="card-services__info-item">
+
+								<!-- card-our-past-project__title   -->
+								<div class="card-services__title">
+
+									<!-- card-our-past-project__name   -->
+									<div class="card-services__name">Olive Max</div>
+
+									<!-- card-our-past-project__link   -->
+									<a href="" class="card-services__link"><svg xmlns="http://www.w3.org/2000/svg"
+											width="30" height="31" viewBox="0 0 30 31" fill="none">
+											<path fill-rule="evenodd" clip-rule="evenodd"
+												d="M19.5858 7.5H4.41421V3.5H26.4142V25.5H22.4142V10.3284L5.82843 26.9142L3 24.0858L19.5858 7.5Z"
+												fill="#121212" />
+										</svg></a>
+								</div>
+
+								<!-- card-our-past-project__paragraph   -->
+								<p class="card-services__paragraph">
+									The platform allows incredible flexibility via creation, distribution, and
+									purchasing features for the brands to stand out and create their own identity in the
+									Metaverse.
+								</p>
+							</div>
+							<!-- card-our-past-project__info-item   -->
+							<div class="card-services__info-item">
+
+								<!-- card-our-past-project__title   -->
+								<div class="card-services__title">
+
+									<!-- card-our-past-project__name   -->
+									<div class="card-services__name">Olive Max</div>
+
+									<!-- card-our-past-project__link   -->
+									<a href="" class="card-services__link"><svg xmlns="http://www.w3.org/2000/svg"
+											width="30" height="31" viewBox="0 0 30 31" fill="none">
+											<path fill-rule="evenodd" clip-rule="evenodd"
+												d="M19.5858 7.5H4.41421V3.5H26.4142V25.5H22.4142V10.3284L5.82843 26.9142L3 24.0858L19.5858 7.5Z"
+												fill="#121212" />
+										</svg></a>
+								</div>
+
+								<!-- card-our-past-project__paragraph   -->
+								<p class="card-services__paragraph">
+									The platform allows incredible flexibility via creation, distribution, and
+									purchasing features for the brands to stand out and create their own identity in the
+									Metaverse.
+								</p>
+							</div>
+
+						</div>
+
+					</div>
+*/

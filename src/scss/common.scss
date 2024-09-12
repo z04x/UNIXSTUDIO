@@ -1,0 +1,228 @@
+// Заголовки, загальні БЕМ блоки та інше...
+.page {
+
+    //============================================== >MAIN PAGE< ==============================================
+
+    &__first-screen {
+    position: relative; 
+    @include adaptiveValue("padding-bottom",120 ,30 );
+        &::before{
+            content:'';
+            top: 0;
+            left: 0;
+            position: absolute;
+            background: #1A1A1A;
+            width: 100%;
+            height: 100%;
+            background-image: url('@img/first-screen/Graphic.png');
+            background-size: 100vw 103.56%;
+            background-repeat: no-repeat;
+            z-index: -1;
+            @media (max-width:$mobile){
+                background-size: 290vw 104.56%;
+            }  
+        }
+        &::after{
+            content:'';
+            top: 40%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            background-image: url('@img/first-screen/vector.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    }
+
+    &__see-details {
+        background-image: url('@img/home-page_detailes/home-page_detailes.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        @include adaptiveValue("padding-bottom",120 ,20 );
+        
+        @media (max-width:$mobile){
+            background-position-y: 50%;
+        }
+    }
+
+    &__spoilers-servises {
+        @include adaptiveValue("padding-bottom",120 ,40 );
+    }
+
+    &__video-section {
+        @include adaptiveValue("padding-bottom",120 ,40 );
+    }
+
+    &__examples-web-site {
+        background-color: #121212;
+        position: relative;
+        @include adaptiveValue("padding-bottom",120 ,40 );
+        &::before{
+            content:'';
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-image: url('@img/home-page_examples-site/Vector.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: 50% 0;
+        }
+    }
+    &__about-theam {
+        position: relative;
+        
+        &::after{
+            content:'';
+            background-image: url('@img/first-screen/Graphic.png');
+            position: absolute;
+            bottom: 20%;
+            left: 0;
+            height: 50%;
+            width: 100%;
+            background-size: 230vw 103.56%;
+            background-repeat: no-repeat;
+            z-index: -1;
+            @media (max-width:$mobile){
+                background-size: 290vw 104.56%;
+            } 
+        }
+        &::before{
+            content:'';
+            position: absolute;
+            height: 80%;
+            width: 100%;
+            top: 0;
+            background: #121212;
+            z-index: -2;
+            
+        }
+
+    }
+    &__services {
+        @include adaptiveValue("padding-top",120 ,40 );   
+        
+    }    
+    
+    &__we-are-worthy {
+        @include adaptiveValue("padding-bottom",120 ,40 );
+    }
+
+    //============================================== >SERVICES PAGE< ==============================================
+
+    &__services-industries {
+        @include adaptiveValue("padding-bottom",120 ,40 );
+    }
+
+    &__funding {
+        @include adaptiveValue("padding-bottom",60 ,0 );
+        @include adaptiveValue("margin-bottom",120 ,80 );
+        @media (min-width:$mobile){
+            border-bottom: rem(1) #d0d0d0 solid; 
+        }
+    }
+
+    //============================================== >CONTACT PAGE< ==============================================
+
+    &__contact-screen {
+        position: relative;
+
+        background: #1A1A1A;
+
+        @include adaptiveValue("padding-bottom",0 ,30 );
+        &::after{
+            content:'';
+            top: 40%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            background-image: url('@img/first-screen/vector.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    }
+
+    &__reviews {
+        background-color: #121212;
+        @include adaptiveValue("padding-bottom",120 ,30 );
+        @include adaptiveValue("padding-top",120 ,30 );
+    }
+}
+
+
+
+//========================================================================================================================================================
+
+.paragraph-24{
+        color:  #121212;
+        @include adaptiveValue("font-size",24 ,16 );
+        font-weight: 400;
+        line-height: math.div(32 ,24 );
+}
+
+//========================================================================================================================================================
+
+//* Animatoin About Theam section
+
+.about-theam__slide.swiper-slide{
+    opacity: .5;
+    transform: scale(0.9);
+    transition: all 0.3s ease 0s;
+    
+    overflow: hidden;
+    &.swiper-slide-active{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.flying-text {
+    @include adaptiveValue("padding-top",300 ,100 );
+    &__text {
+        font-family: Panchang;
+        @include adaptiveValue("font-size",80 ,28 );
+        font-weight: 700;
+        line-height: 100% ;
+        text-transform: uppercase;
+        white-space: nowrap;
+        @include adaptiveValue("gap",40 ,12 );
+        align-items: center;
+        display: flex;
+        align-items: center;
+        svg{
+            @include adaptiveValue("width",100 ,40 );
+            @include adaptiveValue("height",100 ,40 );
+        }
+    }
+    
+}
+.flying-text__text._right{
+    animation: slideright 20s linear infinite alternate;
+}
+.flying-text__text._left {
+    animation: slideleft 20s linear infinite alternate;
+}
+@keyframes slideleft {
+    0% { transform: translateX(0%); } 
+  100% { transform: translateX(-60%); }
+}
+@keyframes slideright {
+    0% { transform: translateX(-60%); } 
+  100% { transform: translateX(0%); }
+}
+
+
+//============================================== >CONTACT PAGE <text aside bar> < ==============================================
+.text-aside {
+    color:#FFF;
+        font-family: Panchang;
+        @include adaptiveValue("font-size",32 ,24 );
+        font-weight: 700;
+        line-height: 112.5%;
+        @include adaptiveValue("letter-spacing",-0.32 ,-0.24 );
+        text-transform: uppercase;
+}
